@@ -47,16 +47,16 @@ def projeto():
     dados = Dados()
     
     # Transformando os dados
-    dados.transform_competen_to_datetime()
+    #dados.transform_competen_to_datetime()
     
     # Criar do dataframe com os dados de leitos
-    dados.create_df_leitos_sus_nsus_goias()
+    #dados.create_df_leitos_sus_nsus_goias()
     
     # Plotar os dados de leitos com lineplot do seaborn
     #dados.generate_lineplot_qt_leitos_sus_nsus()
     
-    st.line_chart(dados.df_leitos_sus_nsus_goias)
+    #st.line_chart(dados.df_leitos_sus_nsus_goias)
     # Dados de leitos cadastrados no subsistema LT do sistema CNES - SUS e NÃO SUS
-        
+    st.write('Dados de leitos cadastrados no subsistema LT do sistema CNES - SUS e NÃO SUS')
 if __name__ == '__main__':
     main()
