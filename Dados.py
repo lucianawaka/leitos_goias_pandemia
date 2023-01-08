@@ -35,7 +35,7 @@ class Dados:
         mapa_goias = folium.Map(
             location=[-14.4086569,-51.31668],
             tiles="cartodbpositron",
-            zoom_start=6,
+            zoom_start=5,
         )
 
         folium.GeoJson(json_goias_malha, name="geojson").add_to(mapa_goias)
