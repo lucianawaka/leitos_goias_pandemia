@@ -1,17 +1,11 @@
 # Bibliotecas
 # Processamento dos dados - Pandas
 import pandas as pd
-# Extrair dados de uma API
-import json
+# Extrair dados web - requests
 import requests
 # Visualização de mapas
 import folium
-from folium.features import Choropleth
-# Visualização dos dados - Matplotlib e Seaborn
-import matplotlib.pyplot as plt
-import seaborn as sns
-# Streamlit app para o projeto de leitos em Goiás
-import streamlit as st
+
 
 class Dados:
     
@@ -34,6 +28,7 @@ class Dados:
         )
 
         folium.GeoJson(json_goias_malha, name="geojson").add_to(mapa_goias)
+        
         folium.LayerControl().add_to(mapa_goias)
         
         return mapa_goias            

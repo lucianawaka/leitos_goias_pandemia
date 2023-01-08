@@ -42,23 +42,21 @@ def referencias():
     
 def projeto():
     
-    st.markdown('''### A evolução da capacidade hospitalar durante a pandemia de Covid-19 em Goiás''')
-    st.write('Governo de Goiás mantém leitos instalados no período crítico da pandemia?')
+    st.markdown('''## A evolução da capacidade hospitalar durante a pandemia de Covid-19 em Goiás''')
+    st.markdown('''Governo de Goiás mantém **leitos instalados** no período crítico da pandemia?''')
+    
     # Instanciando a classe Dados
     dados = Dados()
 
+    # Mapa de Goiás
     st_folium(dados.mapa_estado_goias(), width=700, height=400)
 
-    st.markdown('''## O início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020''')
-    st.markdown('''Segundo a OMS ''')
+    st.markdown('''## O início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020 (segundo a OMS)''')
     st.markdown('''Ainda não houve declaração pela OMS quanto ao fim da pândemia''')
     st.title('Média Leitos SUS e não SUS por Ano')
 
-    
+    # Line chart    
     dados.dt_qt_leitos_sus_nsus.rename(columns={'Leitos_SUS': 'Leitos SUS', 'Leitos_N_SUS': 'Leitos NÃO SUS'}, inplace=True)
-    #st.line_chart(dados.dt_qt_leitos_sus_nsus, x = 'Ano', y = ['Leitos SUS', 'Leitos NÃO SUS'])
-
-
     options = ["Leitos SUS", "Leitos NÃO SUS"]
     options_selected = st.multiselect("Selecione o tipo de leito", options,default= ["Leitos SUS", "Leitos NÃO SUS"])
 
