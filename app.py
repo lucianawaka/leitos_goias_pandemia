@@ -1,7 +1,8 @@
 # Bibliotecas
 # Streamlit app para o projeto de leitos em Goiás
 import streamlit as st
-
+# Dados class
+from Dados import Dados
 
 
 def main():
@@ -42,6 +43,20 @@ def projeto():
     ### Segundo a OMS o início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020
     ### Ainda não houve declaração pela OMS quanto ao fim da pândemia
 
+    # Instanciando a classe Dados
+    dados = Dados()
+    
+    # Transformando os dados
+    dados.transform_competen_to_datetime()
+    
+    # Criar do dataframe com os dados de leitos
+    dados.create_df_leitos_sus_nsus_goias()
+    
+    # Plotar os dados de leitos com lineplot do seaborn
+    #dados.generate_lineplot_qt_leitos_sus_nsus()
+    
+    st.line_chart(dados.df_leitos_sus_nsus_goias)
+    # Dados de leitos cadastrados no subsistema LT do sistema CNES - SUS e NÃO SUS
         
 if __name__ == '__main__':
     main()
