@@ -24,7 +24,7 @@ def main():
 
                 
 def referencias():
-    st.markdown('''### Referências de dados e estudos que foram utilizados para o projeto.''')
+    st.markdown('''### Referências utilizadas para o projeto.''')
 
     st.markdown('''
                 Dados:  
@@ -33,13 +33,15 @@ def referencias():
                 [Dados de Latitude e Longitude de todos os municípios brasileiros](https://github.com/kelvins/Municipios-Brasileiros)  
                 
                 Estudos:  
-                [Folium Heatmaps](https://blog.jovian.ai/interesting-heatmaps-using-python-folium-ee41b118a996)
+                [Folium Heatmaps](https://blog.jovian.ai/interesting-heatmaps-using-python-folium-ee41b118a996)  
+                
+                [Notícia Governo de Goiás mantem leitos instalados no periodo critico da pandemia](https://www.saude.go.gov.br/noticias/16950-governo-de-goias-mantem-leitos-instalados-no-periodo-critico-da-pandemia)
 
                 ''')
     
 def projeto():
     
-    st.title('A evolução da capacidade hospitalar durante a pandemia de Covid-19 em Goiás')
+    st.markdown('''###A evolução da capacidade hospitalar durante a pandemia de Covid-19 em Goiás''')
     st.write('Governo de Goiás mantém leitos instalados no período crítico da pandemia?')
     ### Segundo a OMS o início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020
     ### Ainda não houve declaração pela OMS quanto ao fim da pândemia
