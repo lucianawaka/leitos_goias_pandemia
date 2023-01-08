@@ -43,31 +43,11 @@ class Dados:
         
         return mapa_goias     
     
-    # Desenvolvimento - Análise dos dados de leitos SUS e não SUS
-    def generate_lineplot_qt_leitos_sus_nsus(self):
-        '''Função para gerar um gráfico de linha com a quantidade de leitos SUS e não SUS por ano'''
-        
-        # Configura o tema do gráfico
-        ## Cores
-        colors = ['#282f6b', '#b22200', '#eace3f', '#224f20', '#b35c1e', '#419391', '#839c56','#3b89bc']
-        ## Tamanho
-        theme = {'figure.figsize' : (15, 10)}
-        ## Aplica o tema
-        sns.set_theme(rc = theme,
-                    palette = colors)
-        plt.figure(figsize=(15,10))
-        plt.suptitle('Quantidade de Leitos SUS e não SUS por Ano', fontsize=20, color='#404040', fontweight=550, y = 0.95)
-        plt.xlabel(' ')
-        sns.lineplot(data = self.dt_qt_leitos_sus_nsus) # dados leitos sus e não sus
-        plt.legend(fontsize=20)
-        plt.legend(fontsize="x-large", labels=["Leitos SUS", "Leitos não SUS"]) 
-        plt.annotate('Fonte: https://datasus.saude.gov.br/transferencia-de-arquivos - CNES/LT',
-                    xy = (1.0, -0.07),
-                    xycoords='axes fraction',
-                    ha='right',
-                    va="center",
-                    fontsize=14);    
-        
+    # Transformação - Análise dos dados de leitos SUS e não SUS
+    def transform_qt_leitos_sus_nsus(self):
+        '''Pega a mediana da quantidade de leitos SUS e não SUS por ano'''
+        self.dt_qt_leitos_sus_nsus = self.dt_qt_leitos_sus_nsus.groupby(['ANO']).median()
+
     
 
     

@@ -43,33 +43,18 @@ def projeto():
     
     st.markdown('''### A evolução da capacidade hospitalar durante a pandemia de Covid-19 em Goiás''')
     st.write('Governo de Goiás mantém leitos instalados no período crítico da pandemia?')
-    ### Segundo a OMS o início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020
-    ### Ainda não houve declaração pela OMS quanto ao fim da pândemia
-
     # Instanciando a classe Dados
     dados = Dados()
-    st.write(dados.dt_qt_leitos_sus_nsus)
 
     st_folium(dados.mapa_estado_goias(), width=700, height=400)
-    
-    
-    
-    
-    # Select only certain columns
+
+    st.markdown('''#### Segundo a OMS o início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020''')
+    st.markdown('''Ainda não houve declaração pela OMS quanto ao fim da pândemia''')
     st.title('Leitos SUS e não SUS no tempo')
 
-    dados.dt_qt_leitos_sus_nsus.rename(columns={'QT_SUS': 'Leitos SUS', 'QT_NSUS': 'Leitos NÃO SUS' }, inplace=True)
-    # selected_columns = st.multiselect('Selecione as colunas do gráfico', dados.dt_qt_leitos_sus_nsus.columns, ['Leitos SUS', 'Leitos NÃO SUS'])
-    
+    dados.dt_qt_leitos_sus_nsus.rename(columns={'QT_SUS': 'Leitos SUS', 'QT_NSUS': 'Leitos NÃO SUS', 'COMPETEN':'Ano' }, inplace=True)
+    st.line_chart(dados.dt_qt_leitos_sus_nsus, x = 'Ano', y = ['Leitos SUS', 'Leitos NÃO SUS'])
 
-    # Create the line chart
-    st.line_chart(dados.dt_qt_leitos_sus_nsus, x = 'COMPETEN', y = ['Leitos SUS', 'Leitos NÃO SUS'])
 
-    # Plotar os dados de leitos com lineplot do seaborn
-    #dados.generate_lineplot_qt_leitos_sus_nsus()
-    
-    #st.line_chart(dados.df_leitos_sus_nsus_goias)
-    # Dados de leitos cadastrados no subsistema LT do sistema CNES - SUS e NÃO SUS
-    st.write('Dados de leitos cadastrados no subsistema LT do sistema CNES - SUS e NÃO SUS')
 if __name__ == '__main__':
     main()
