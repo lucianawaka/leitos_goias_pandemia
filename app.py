@@ -1,6 +1,7 @@
 # Bibliotecas
 # Streamlit app para o projeto de leitos em Goiás
 import streamlit as st
+from streamlit_folium import st_folium
 # Dados class
 from Dados import Dados
 
@@ -27,12 +28,14 @@ def referencias():
                 [Malha de Goiás](https://servicodados.ibge.gov.br/api/v3/malhas/estados/GO?formato=application/vnd.geo+json)  
                 
                 
-                Estudos:  
+                Referências:  
                 [Folium Heatmaps](https://blog.jovian.ai/interesting-heatmaps-using-python-folium-ee41b118a996)  
                 
                 [Notícia Governo de Goiás mantem leitos instalados no periodo critico da pandemia](https://www.saude.go.gov.br/noticias/16950-governo-de-goias-mantem-leitos-instalados-no-periodo-critico-da-pandemia)   
                 
-                [Cenário dos Hospitais no Brasil 2021-2022](http://cnsaude.org.br/wp-content/uploads/2022/07/CNSAUDE-FBH-CENARIOS-2022.pdf)
+                [Cenário dos Hospitais no Brasil 2021-2022](http://cnsaude.org.br/wp-content/uploads/2022/07/CNSAUDE-FBH-CENARIOS-2022.pdf)  
+                
+                [Sobre o Governo de Goiás](https://goias.go.gov.br/sobre-o-municipio/)
 
                 ''')
     
@@ -45,12 +48,9 @@ def projeto():
 
     # Instanciando a classe Dados
     dados = Dados()
-    
-    # Transformando os dados
-    #dados.transform_competen_to_datetime()
-    
-    # Criar do dataframe com os dados de leitos
-    #dados.create_df_leitos_sus_nsus_goias()
+    st.write(dados.dt_qt_leitos_sus_nsus)
+
+    st_folium(dados.mapa_estado_goias(), width=700, height=400)
     
     # Plotar os dados de leitos com lineplot do seaborn
     #dados.generate_lineplot_qt_leitos_sus_nsus()
