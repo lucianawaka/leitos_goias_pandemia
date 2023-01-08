@@ -22,13 +22,6 @@ class Dados:
         # Carrega os dados de malha do estado de Goiás
         self.malha_goias = requests.get('https://servicodados.ibge.gov.br/api/v3/malhas/estados/GO?formato=application/vnd.geo+json')
         
-        
-        
-        
-        self.dados_municipios = pd.read_csv('csv/municipios.csv', encoding='utf-8', low_memory=False, index_col=None)
-        self.dados_lat_lon_goias = None
-        self.df_lt_municipios_goias = None
-        
     # Introdução - contexto geral do projeto - Estado de Goiás
     def mapa_estado_goias(self):
         '''Função para gerar um mapa do estado de Goiás'''
@@ -43,20 +36,30 @@ class Dados:
         folium.GeoJson(json_goias_malha, name="geojson").add_to(mapa_goias)
         folium.LayerControl().add_to(mapa_goias)
         
-        return mapa_goias     
-    
-    # Transformação - Análise dos dados de leitos SUS e não SUS
-    def transform_qt_leitos_sus_nsus(self):
-        '''Pega a mediana da quantidade de leitos SUS e não SUS por ano'''        
-        # Qt leitos SUS por Competência
-        qt_sus = self.df_lt.groupby(['COMPETEN'])['QT_SUS'].sum()
-    
-        # Qt leitos NÃO SUS por Competência
-        qt_nsus = self.df_lt.groupby(['COMPETEN'])['QT_NSUS'].sum()
-
-        qt_sus.columns = ['COMPETEN', 'Quantidade Leitos SUS']
-        qt_nsus.columns = ['COMPETEN', 'Quantidade Leitos NÃO SUS']
+        return mapa_goias            
         
-        self.dt_qt_leitos_sus_nsus = pd.merge(qt_sus, qt_nsus, how = 'inner', on = 'COMPETEN')
-    
-
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        #########################################
+        # A IMPLEMENTAR
+        # self.dados_municipios = pd.read_csv('csv/municipios.csv', encoding='utf-8', low_memory=False, index_col=None)
+        # self.dados_lat_lon_goias = None
+        # self.df_lt_municipios_goias = None
+        

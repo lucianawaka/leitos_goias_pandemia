@@ -5,6 +5,7 @@ from streamlit_folium import st_folium
 # Dados class
 from Dados import Dados
 
+import plotly.express as px
 
 def main():
     options = ['Projeto leitos Goiás', 'Referências']
@@ -51,11 +52,23 @@ def projeto():
     st.markdown('''## O início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020''')
     st.markdown('''Segundo a OMS ''')
     st.markdown('''Ainda não houve declaração pela OMS quanto ao fim da pândemia''')
-    st.title('Leitos SUS e não SUS no tempo')
+    st.title('Média Leitos SUS e não SUS por Ano')
 
-    dados.dt_qt_leitos_sus_nsus.rename(columns={'QT_SUS': 'Leitos SUS', 'QT_NSUS': 'Leitos NÃO SUS', 'COMPETEN':'Ano' }, inplace=True)
-    st.line_chart(dados.dt_qt_leitos_sus_nsus, x = 'Ano', y = ['Leitos SUS', 'Leitos NÃO SUS'])
+    
+    dados.dt_qt_leitos_sus_nsus.rename(columns={'Leitos_SUS': 'Leitos SUS', 'Leitos_N_SUS': 'Leitos NÃO SUS'}, inplace=True)
+    #st.line_chart(dados.dt_qt_leitos_sus_nsus, x = 'Ano', y = ['Leitos SUS', 'Leitos NÃO SUS'])
 
+
+    options = ["Leitos SUS", "Leitos NÃO SUS"]
+    options_selected = st.multiselect("Selecione o tipo de leito", options,default= ["Leitos SUS", "Leitos NÃO SUS"])
+
+    fig = px.line(dados.dt_qt_leitos_sus_nsus, x="Ano", y=options_selected)
+    fig.update_layout(
+        xaxis_title=' ',
+
+        yaxis_title=' '
+    )
+    st.plotly_chart(fig, use_container_width=True)
 
 if __name__ == '__main__':
     main()
