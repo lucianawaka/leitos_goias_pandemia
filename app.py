@@ -49,7 +49,7 @@ def projeto():
     dados = Dados()
 
     #Métricas de Goiás Área e População
-    st.subheader('Dados de Goiás [IBGE-2021]')
+    st.subheader('Dados do Estado de Goiás [IBGE-2021]')
 
     col1, col2 = st.columns(2)
     with col1:
