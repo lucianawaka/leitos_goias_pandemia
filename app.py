@@ -64,7 +64,7 @@ def projeto():
     st.markdown('''Ainda não houve declaração pela OMS quanto ao fim da pândemia.''')
     st.subheader('Média Leitos SUS e não SUS por Ano')
 
-    # Line chart    
+    # Line chart           
     dados.dt_qt_leitos_sus_nsus.rename(columns={'Leitos_SUS': 'Leitos SUS', 'Leitos_N_SUS': 'Leitos NÃO SUS'}, inplace=True)
     options = ["Leitos SUS", "Leitos NÃO SUS"]
     options_selected = st.multiselect("Selecione o tipo de leito", options,default= ["Leitos SUS", "Leitos NÃO SUS"])
