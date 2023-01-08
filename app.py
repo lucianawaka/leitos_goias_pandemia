@@ -52,6 +52,19 @@ def projeto():
 
     st_folium(dados.mapa_estado_goias(), width=700, height=400)
     
+    
+    
+    
+    # Select only certain columns
+    st.title('Leitos SUS e não SUS no tempo')
+
+    dados.dt_qt_leitos_sus_nsus.rename(columns={'QT_SUS': 'Leitos SUS', 'QT_NSUS': 'Leitos NÃO SUS' }, inplace=True)
+    # selected_columns = st.multiselect('Selecione as colunas do gráfico', dados.dt_qt_leitos_sus_nsus.columns, ['Leitos SUS', 'Leitos NÃO SUS'])
+    
+
+    # Create the line chart
+    st.line_chart(dados.dt_qt_leitos_sus_nsus, x = 'COMPETEN', y = ['Leitos SUS', 'Leitos NÃO SUS'])
+
     # Plotar os dados de leitos com lineplot do seaborn
     #dados.generate_lineplot_qt_leitos_sus_nsus()
     
