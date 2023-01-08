@@ -36,7 +36,7 @@ def referencias():
                 
                 [Cenário dos Hospitais no Brasil 2021-2022](http://cnsaude.org.br/wp-content/uploads/2022/07/CNSAUDE-FBH-CENARIOS-2022.pdf)  
                 
-                [Sobre o Governo de Goiás](https://goias.go.gov.br/sobre-o-municipio/)
+                [Sobre Goiás - IBGE](https://www.ibge.gov.br/cidades-e-estados/go.html)
 
                 ''')
     
@@ -48,12 +48,21 @@ def projeto():
     # Instanciando a classe Dados
     dados = Dados()
 
+    #Métricas de Goiás Área e População
+    st.subheader('Dados de Goiás [IBGE-2021]')
+
+    col1, col2 = st.columns(2)
+    with col1:
+         st.metric('Área Territorial', '340.242,856 km²')
+    with col2:
+        st.metric('População estimada', '7.206.589 pessoas')
+   
     # Mapa de Goiás
     st_folium(dados.mapa_estado_goias(), width=700, height=400)
 
-    st.markdown('''## O início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020 (segundo a OMS)''')
-    st.markdown('''Ainda não houve declaração pela OMS quanto ao fim da pândemia''')
-    st.title('Média Leitos SUS e não SUS por Ano')
+    st.markdown('''### O início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020 (segundo a OMS)''')
+    st.markdown('''Ainda não houve declaração pela OMS quanto ao fim da pândemia.''')
+    st.subheader('Média Leitos SUS e não SUS por Ano')
 
     # Line chart    
     dados.dt_qt_leitos_sus_nsus.rename(columns={'Leitos_SUS': 'Leitos SUS', 'Leitos_N_SUS': 'Leitos NÃO SUS'}, inplace=True)
