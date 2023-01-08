@@ -48,7 +48,8 @@ def projeto():
 
     st_folium(dados.mapa_estado_goias(), width=700, height=400)
 
-    st.markdown('''#### Segundo a OMS o início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020''')
+    st.markdown('''## O início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020''')
+    st.markdown('''Segundo a OMS ''')
     st.markdown('''Ainda não houve declaração pela OMS quanto ao fim da pândemia''')
     st.title('Leitos SUS e não SUS no tempo')
 

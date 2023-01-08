@@ -10,6 +10,8 @@ from folium.features import Choropleth
 # Visualização dos dados - Matplotlib e Seaborn
 import matplotlib.pyplot as plt
 import seaborn as sns
+# Streamlit app para o projeto de leitos em Goiás
+import streamlit as st
 
 class Dados:
     
@@ -45,9 +47,16 @@ class Dados:
     
     # Transformação - Análise dos dados de leitos SUS e não SUS
     def transform_qt_leitos_sus_nsus(self):
-        '''Pega a mediana da quantidade de leitos SUS e não SUS por ano'''
-        self.dt_qt_leitos_sus_nsus = self.dt_qt_leitos_sus_nsus.groupby(['ANO']).median()
+        '''Pega a mediana da quantidade de leitos SUS e não SUS por ano'''        
+        # Qt leitos SUS por Competência
+        qt_sus = self.df_lt.groupby(['COMPETEN'])['QT_SUS'].sum()
+    
+        # Qt leitos NÃO SUS por Competência
+        qt_nsus = self.df_lt.groupby(['COMPETEN'])['QT_NSUS'].sum()
 
+        qt_sus.columns = ['COMPETEN', 'Quantidade Leitos SUS']
+        qt_nsus.columns = ['COMPETEN', 'Quantidade Leitos NÃO SUS']
+        
+        self.dt_qt_leitos_sus_nsus = pd.merge(qt_sus, qt_nsus, how = 'inner', on = 'COMPETEN')
     
 
-    
