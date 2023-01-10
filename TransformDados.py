@@ -37,17 +37,12 @@ class TransformDados:
         '''Função para retornar os dados de leitos SUS e não SUS de Goiás'''
         
         # Qt leitos SUS por Competência
-        qt_sus = self.df_lt.groupby(['COMPETEN','ANO'], as_index=False)['QT_SUS'].sum()
-        qt_sus = qt_sus.groupby(['ANO'], as_index=False)['QT_SUS'].mean().round().astype(int)
+        qt_sus = self.df_lt.groupby(['COMPETEN'], as_index=False)['QT_SUS'].sum()
         # Qt leitos NÃO SUS por Competência
-        qt_nsus = self.df_lt.groupby(['COMPETEN','ANO'], as_index=False)['QT_NSUS'].sum()
-        qt_nsus = qt_nsus.groupby(['ANO'], as_index=False)['QT_NSUS'].mean().round().astype(int)
-
-        qt_sus.columns = ['Ano', 'Leitos_SUS']
-        qt_nsus.columns = ['Ano', 'Leitos_N_SUS']
+        qt_nsus = self.df_lt.groupby(['COMPETEN'], as_index=False)['QT_NSUS'].sum()
         
-        self.dt_qt_leitos_sus_nsus = pd.merge(qt_sus, qt_nsus, how = 'inner', on = 'Ano')
-      
+        self.dt_qt_leitos_sus_nsus = pd.merge(qt_sus, qt_nsus, how = 'inner', on = 'COMPETEN')
+  
     def to_csv_df_leitos_sus_nsus_goias(self):
         '''Função para salvar os dados de leitos SUS e não SUS de Goiás em um arquivo csv'''
         self.dt_qt_leitos_sus_nsus.to_csv('csv/df_leitos_sus_nsus_goias.csv', index = False)

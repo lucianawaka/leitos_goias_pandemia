@@ -62,14 +62,18 @@ def projeto():
 
     st.markdown('''### O início da pândemia por COVID-19 no Brasil foi dia 11 de março de 2020 (segundo a OMS)''')
     st.markdown('''Ainda não houve declaração pela OMS quanto ao fim da pândemia.''')
-    st.subheader('Média Leitos SUS e não SUS por Ano')
+    st.subheader(' Leitos SUS e não SUS no tempo')
 
-    # Line chart           
-    dados.dt_qt_leitos_sus_nsus.rename(columns={'Leitos_SUS': 'Leitos SUS', 'Leitos_N_SUS': 'Leitos NÃO SUS'}, inplace=True)
+    # Line chart    
+    
+    # setando o index
+    dados.index_to_dt_qt_leitos_sus_nsus()
+           
+    dados.dt_qt_leitos_sus_nsus.rename(columns={'QT_SUS': 'Leitos SUS', 'QT_NSUS': 'Leitos NÃO SUS'}, inplace=True)
     options = ["Leitos SUS", "Leitos NÃO SUS"]
     options_selected = st.multiselect("Selecione o tipo de leito", options,default= ["Leitos SUS", "Leitos NÃO SUS"])
 
-    fig = px.line(dados.dt_qt_leitos_sus_nsus, x="Ano", y=options_selected)
+    fig = px.line(dados.dt_qt_leitos_sus_nsus, y=options_selected)
     fig.update_layout(
         xaxis_title=' ',
 

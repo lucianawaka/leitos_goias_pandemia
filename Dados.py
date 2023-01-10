@@ -33,6 +33,8 @@ class Dados:
         
         return mapa_goias            
         
+    def index_to_dt_qt_leitos_sus_nsus(self):
+        self.dt_qt_leitos_sus_nsus.set_index('COMPETEN', inplace = True)
         
         
         
