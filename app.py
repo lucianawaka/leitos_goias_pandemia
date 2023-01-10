@@ -67,8 +67,7 @@ def projeto():
     # Line chart    
     
     # setando o index
-    dados.index_to_dt_qt_leitos_sus_nsus()
-           
+    dados.dt_qt_leitos_sus_nsus.set_index('COMPETEN', inplace = True)           
     dados.dt_qt_leitos_sus_nsus.rename(columns={'QT_SUS': 'Leitos SUS', 'QT_NSUS': 'Leitos NÃO SUS'}, inplace=True)
     options = ["Leitos SUS", "Leitos NÃO SUS"]
     options_selected = st.multiselect("Selecione o tipo de leito", options,default= ["Leitos SUS", "Leitos NÃO SUS"])
